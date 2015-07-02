@@ -3,8 +3,20 @@
   "version": "0.0.1",
   "description": "AngularJS common utility functions and token-based authentication service",
   "main": "server.js",
-  "author": {
-    "name": "Michelle Darlea",
-    "email": "mdarlea@gmail.com"
+  "author": "Michelle Darlea <mdarlea@gmail.com>",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdarlea/sw-common.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdarlea/sw-common/issues"
+  },
+  "homepage": "https://github.com/mdarlea/sw-common",
+  "devDependencies": {
+    "gulp": "^3.9.0"
   }
 }
