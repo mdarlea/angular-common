@@ -1,0 +1,10 @@
+{
+  "name": "swaksoft-sw-common",
+  "version": "0.0.1",
+  "description": "AngularJS common utility functions and token-based authentication service",
+  "main": "server.js",
+  "author": {
+    "name": "Michelle Darlea",
+    "email": "mdarlea@gmail.com"
+  }
+}
