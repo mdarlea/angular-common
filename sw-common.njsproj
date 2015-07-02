@@ -30,7 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Gruntfile.js" />
+    <Compile Include="gruntfile.js" />
     <Compile Include="gulpfile.js" />
     <Compile Include="server.js" />
     <Compile Include="src\pagedDataService.js" />
