@@ -8,6 +8,7 @@ lib-cov
 *.gz
 *.swp
 *.swo
+*.tmp
 .DS_Store
 
 
