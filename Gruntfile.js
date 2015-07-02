@@ -7,7 +7,8 @@
     grunt.initConfig({
         ngdocs: {
             options: {
-                html5Mode: false
+                html5Mode: false,
+                sourceLink: 'https://github.com/mdarlea/sw-common/blob/master/{{file}}'
             },
             all: ['src/*.js']
         },
