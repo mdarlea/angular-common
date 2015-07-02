@@ -35,10 +35,15 @@
          * <tr>
          * <td>directions</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
          * <td>'asc' for sorting arcending, 'desc' for sorting descending</td></tr></table>
-    * @param {Object} data.pagingOptions Options for paging
-    * @param {Array} data.pagingOptions.pageSizes A list of possible page sizes. This option aplies only to paged grids
-    * @param {number} data.pagingOptions.pageSize Specifies the number of items on a single page
-    * @param {number} data.pagingOptions.currentPage The current page. This option aplies only to paged grids
+    * @param {Object} data.pagingOptions Options for paging <table><tr>
+        * <td>pageSizes</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
+        * <td>A list of possible page sizes. This option aplies only to paged grids</td></tr>
+        * <tr>
+        * <td>pageSize</td><td><a href="" class="label type-hint type-hint-number">number</a></td> 
+        * <td>Specifies the number of items on a single page</td></tr> 
+        * <tr>
+        * <td>currentPage</td><td><a href="" class="label type-hint type-hint-number">number</a></td> 
+        * <td>The current page. This option aplies only to paged grids</td></tr></table>
     */
     angular.module('swCommon').factory('PagedDataService', ['$http', '$q', 'ngAuthSettings', function ($http, $q, ngAuthSettings) {
             var serviceBase = ngAuthSettings.apiServiceBaseUri;

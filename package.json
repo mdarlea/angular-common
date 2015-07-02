@@ -1,5 +1,5 @@
 {
-  "name": "swaksoft-sw-common",
+  "name": "sw-common",
   "version": "0.0.1",
   "description": "AngularJS common utility functions and token-based authentication service",
   "main": "server.js",
@@ -9,13 +9,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mdarlea/sw-common.git"
+    "url": "https://github.com/mdarlea/angular-common.git"
   },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mdarlea/sw-common/issues"
+    "url": "https://github.com/mdarlea/angular-common/issues"
   },
-  "homepage": "https://github.com/mdarlea/sw-common",
+  "homepage": "https://github.com/mdarlea/angular-common",
   "devDependencies": {
     "angular": "^1.4.1",
     "connect": "^3.4.0",

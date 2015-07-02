@@ -7,10 +7,15 @@
     grunt.initConfig({
         ngdocs: {
             options: {
+                dest: 'dist/docs',
+                title: 'sw-common',
                 html5Mode: false,
-                sourceLink: 'https://github.com/mdarlea/sw-common/blob/master/{{file}}'
+                sourceLink: 'https://github.com/mdarlea/angular-common/blob/master/{{file}}'
             },
-            all: ['src/*.js']
+            api: {
+                src: ['src/*.js', '!src/*.spec.js'],
+                title: 'API Documentation'
+            }
         },
         connect: {
             options: {
@@ -18,9 +23,8 @@
             },
             server: {}
         },
-        clean: ['docs']
+        clean: ['dist/docs']
     });
     
     grunt.registerTask('default', ['clean', 'ngdocs', 'connect']);
-
 };
