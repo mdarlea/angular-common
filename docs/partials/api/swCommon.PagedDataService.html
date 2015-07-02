@@ -1,4 +1,4 @@
-<a href="https://github.com/mdarlea/sw-common.git/edit/master/src/pagedDataService.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/mdarlea/sw-common.git/blob/21fab2d/src/pagedDataService.js#L39" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">PagedDataService</code>
+<a href="https://github.com/mdarlea/sw-common.git/edit/master/src/pagedDataService.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/mdarlea/sw-common.git/blob/80adcd6/src/pagedDataService.js#L43" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">PagedDataService</code>
 <div><span class="hint">service in module <code ng:non-bindable="">swCommon</code>
 </span>
 </div>
@@ -26,28 +26,32 @@
 </div></td></tr><tr><td>totalRecords</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="swcommon-pageddataservice-page"><p>Total number of loaded records</p>
 </div></td></tr><tr><td>selected</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="swcommon-pageddataservice-page"><p>Selected records</p>
 </div></td></tr><tr><td>totalPages</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="swcommon-pageddataservice-page"><p>Total pages loaded</p>
-</div></td></tr><tr><td>filterOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-page"><p>Option for filtering data</p>
-</div></td></tr><tr><td>filterOptions.filterText</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="swcommon-pageddataservice-page"><p>Text to filter data</p>
-</div></td></tr><tr><td>sortOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-page"><p>Options for sorting data</p>
-</div></td></tr><tr><td>sortOptions.fields</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="swcommon-pageddataservice-page"><p>Sord data by the given fields</p>
-</div></td></tr><tr><td>sortOptions.directions</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="swcommon-pageddataservice-page"><p>&#39;asc&#39; for sorting arcending, &#39;desc&#39; for sorting descending</p>
+</div></td></tr><tr><td>filterOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-page"><p>Options for filtering data <table><tr></p>
+<p><td>filterText</td><td><a href="" class="label type-hint type-hint-string">string</a></td>       </p>
+<p><td>Text to filter data</td></tr></table>    </p>
+</div></td></tr><tr><td>sortOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-page"><p>Options for sorting data <table><tr></p>
+<p><td>fields</td><td><a href="" class="label type-hint type-hint-array">Array</a></td></p>
+<p><td>Sort data by the given fields</td></tr>  </p>
+<p><tr></p>
+<p><td>directions</td><td><a href="" class="label type-hint type-hint-array">Array</a></td></p>
+<p><td>&#39;asc&#39; for sorting arcending, &#39;desc&#39; for sorting descending</td></tr></table></p>
 </div></td></tr><tr><td>pagingOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-page"><p>Options for paging</p>
 </div></td></tr><tr><td>pagingOptions.pageSizes</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="swcommon-pageddataservice-page"><p>A list of possible page sizes. This option aplies only to paged grids</p>
 </div></td></tr><tr><td>pagingOptions.pageSize</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="swcommon-pageddataservice-page"><p>Specifies the number of items on a single page</p>
 </div></td></tr><tr><td>pagingOptions.currentPage</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="swcommon-pageddataservice-page"><p>The current page. This option aplies only to paged grids</p>
 </div></td></tr></tbody></table></td></tr></tbody></table></div>
 <div class="member method"><h2 id="methods">Methods</h2>
-<ul class="methods"><li><a href="https://github.com/mdarlea/sw-common.git/blob/21fab2d/src/pagedDataService.js#L177" class="view-source icon-eye-open"> </a><h3 id="methods_find">find(queryOptions)</h3>
+<ul class="methods"><li><a href="https://github.com/mdarlea/sw-common.git/blob/80adcd6/src/pagedDataService.js#L181" class="view-source icon-eye-open"> </a><h3 id="methods_find">find(queryOptions)</h3>
 <div class="find"><div class="swcommon-pageddataservice-find-page"><p>Calls API to return the data for the next page</p>
 </div><h5 id="methods_find_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>queryOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-find-page"><p>Options for quering data from the server</p>
 </div></td></tr></tbody></table><h5 id="methods_find_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-find-page"><p>the promise to return the data</p>
 </div></td></tr></table></div>
 </li>
-<li><a href="https://github.com/mdarlea/sw-common.git/blob/21fab2d/src/pagedDataService.js#L161" class="view-source icon-eye-open"> </a><h3 id="methods_init">init()</h3>
+<li><a href="https://github.com/mdarlea/sw-common.git/blob/80adcd6/src/pagedDataService.js#L165" class="view-source icon-eye-open"> </a><h3 id="methods_init">init()</h3>
 <div class="init"><div class="swcommon-pageddataservice-init-page"><p>Initializes the data in the paged list. Clears the list of items</p>
 </div></div>
 </li>
-<li><a href="https://github.com/mdarlea/sw-common.git/blob/21fab2d/src/pagedDataService.js#L199" class="view-source icon-eye-open"> </a><h3 id="methods_search">search(queryOptions)</h3>
+<li><a href="https://github.com/mdarlea/sw-common.git/blob/80adcd6/src/pagedDataService.js#L203" class="view-source icon-eye-open"> </a><h3 id="methods_search">search(queryOptions)</h3>
 <div class="search"><div class="swcommon-pageddataservice-search-page"><p>Calls API to search data based on the information provided in the filterOptions</p>
 </div><h5 id="methods_search_parameters">Parameters</h5><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>queryOptions</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-search-page"><p>Options for quering data from the server</p>
 </div></td></tr></tbody></table><h5 id="methods_search_returns">Returns</h5><table class="variables-matrix"><tr><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="swcommon-pageddataservice-search-page"><p>the promise to return the filtered data</p>

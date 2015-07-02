@@ -26,11 +26,15 @@
     * @param {number} data.totalRecords Total number of loaded records     
     * @param {Array} data.selected Selected records
     * @param {number} data.totalPages Total pages loaded
-    * @param {Object} data.filterOptions Option for filtering data
-    * @param {string} data.filterOptions.filterText Text to filter data
-    * @param {Object} data.sortOptions Options for sorting data
-    * @param {Array} data.sortOptions.fields Sord data by the given fields
-    * @param {Array} data.sortOptions.directions 'asc' for sorting arcending, 'desc' for sorting descending
+    * @param {Object} data.filterOptions Options for filtering data <table><tr>
+         * <td>filterText</td><td><a href="" class="label type-hint type-hint-string">string</a></td>       
+         * <td>Text to filter data</td></tr></table>    
+    * @param {Object} data.sortOptions Options for sorting data <table><tr>
+         * <td>fields</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
+         * <td>Sort data by the given fields</td></tr>  
+         * <tr>
+         * <td>directions</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
+         * <td>'asc' for sorting arcending, 'desc' for sorting descending</td></tr></table>
     * @param {Object} data.pagingOptions Options for paging
     * @param {Array} data.pagingOptions.pageSizes A list of possible page sizes. This option aplies only to paged grids
     * @param {number} data.pagingOptions.pageSize Specifies the number of items on a single page
