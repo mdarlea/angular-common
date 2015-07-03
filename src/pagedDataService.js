@@ -18,74 +18,78 @@
     * @description Service that queries paged data . It can be used with ngGrid, any grind that supports paging or with an infinit-scrolling list
     * 
     * @constructor
-    * @param {string} baseUrl - base URL for calling the API
-    * @param {Object} data Data paging settings
-    * @param {boolean} data.fixedPage True for paged grids, False for infinite scrolling lists
-    * @param {boolean} data.loading True is data is currently loading, False otherwise 
-    * @param {Array} data.items The items to be displayed
-    * @param {number} data.totalRecords Total number of loaded records     
-    * @param {Array} data.selected Selected records
-    * @param {number} data.totalPages Total pages loaded
-    * @param {Object} data.filterOptions Options for filtering data <table><tr>
+    * @param {string} baseUrl base URL for calling the API
+    * @param {Object} options Data paging options
+    * @param {boolean} [options.fixedPage=false] True for paged grids, False for infinite scrolling lists   
+    * @param {Object} options.filterOptions Options for filtering data <table><tr>
          * <td>filterText</td><td><a href="" class="label type-hint type-hint-string">string</a></td>       
          * <td>Text to filter data</td></tr></table>    
-    * @param {Object} data.sortOptions Options for sorting data <table><tr>
+    * @param {Object} options.sortOptions Options for sorting data <table>
+         * <tr>
          * <td>fields</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
          * <td>Sort data by the given fields</td></tr>  
          * <tr>
          * <td>directions</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
-         * <td>'asc' for sorting arcending, 'desc' for sorting descending</td></tr></table>
-    * @param {Object} data.pagingOptions Options for paging <table><tr>
+         * <td>'asc' for sorting arcending, 'desc' for sorting descending. Default is ['asc']</td></tr></table>
+    * @param {Object} [options.pagingOptions={pageSizes: new Array(5, 10, 20, 50, 100), pageSize: 10}] Options for paging <table>
+        * <tr>
         * <td>pageSizes</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
-        * <td>A list of possible page sizes. This option aplies only to paged grids</td></tr>
+        * <td>A list of possible page sizes. This option aplies only to paged grids. Default is [5, 10, 20, 50, 100].</td></tr>
         * <tr>
         * <td>pageSize</td><td><a href="" class="label type-hint type-hint-number">number</a></td> 
-        * <td>Specifies the number of items on a single page</td></tr> 
+        * <td>Specifies the number of items on a single page. Default is 10.</td></tr> 
         * <tr>
         * <td>currentPage</td><td><a href="" class="label type-hint type-hint-number">number</a></td> 
-        * <td>The current page. This option aplies only to paged grids</td></tr></table>
+        * <td>The current page. This option aplies only to paged grids</td></tr></table> 
     */
     angular.module('swCommon').factory('PagedDataService', ['$http', '$q', 'ngAuthSettings', function ($http, $q, ngAuthSettings) {
-            var serviceBase = ngAuthSettings.apiServiceBaseUri;
-           
-            var PagedDataService = function (baseUrl, data) {
-                this.baseUrl = baseUrl;
+        var serviceBase = ngAuthSettings.apiServiceBaseUri;
+ 
+        var PagedDataService = function (baseUrl, options) {
+            this.baseUrl = baseUrl;
                 
-                this.data = $.extend(true, {},
-                {
-                        fixedPage: false,
-                        loading: false,
-                        items: [],
-                        totalRecords: 0,
-                        selected: [],
-                        totalPages: 0,
+            this.fixedPage = (options && options.fixedPage) ? options.fixedPage : false;
+                
+            var data = {
+                filterOptions: (options && options.filterOptions) ? options.filterOptions : {},
+                sortOptions: (options && options.sortOptions) ? options.sortOptions : {},
+                pagingOptions: (options && options.pagingOptions) ? options.pagingOptions : {}
+            };
+
+            this.data = $.extend(true, {},
+            {
+                    loading: false,
+                    items: [],
+                    totalRecords: 0,
+                    selected: [],
+                    totalPages: 0,
                     
-                        filterOptions: {
-                            filterText: '',
-                            externalFilter: 'searchText',
-                            useExternalFilter: true
-                        },
-                        sortOptions: {
-                            fields: [],
-                            directions: ["asc"]
-                        },
+                    filterOptions: {
+                        filterText: '',
+                        externalFilter: 'searchText',
+                        useExternalFilter: true
+                    },
+                    sortOptions: {
+                        fields: [],
+                        directions: ["asc"]
+                    },
                     
-                        pagingOptions: {
-                            pageSizes: [5, 10, 20, 50, 100],
-                            pageSize: 10,
-                            currentPage: 0
-                        }
-                    }, data);
-                };
+                    pagingOptions: {
+                        pageSizes: [5, 10, 20, 50, 100],
+                        pageSize: 10,
+                        currentPage: 0
+                    }
+                }, data);
+            };
             
             PagedDataService.prototype = (function () {
                 function getOptions(queryOptions) {
                     var query = (queryOptions) ? queryOptions : {};
-                    var page = (this.data.fixedPage)
+                    var page = (this.fixedPage)
                                 ? this.data.pagingOptions.currentPage
                                 : null;
                     var minIdentity = null;
-                    if (!this.data.fixedPage) {
+                    if (!this.fixedPage) {
                         var max = this.data.items.length - 1;
                         if (max > -1) {
                             minIdentity = this.data.items[max].Id;
@@ -128,7 +132,7 @@
                             }
                         }
                         
-                        if (that.data.fixedPage) {
+                        if (that.fixedPage) {
                             that.data.items = data.Content;
                         }
                         else {
@@ -162,8 +166,8 @@
                     constructor: PagedDataService,
                     
                     /**
-                    * @ngdoc function 
-                    * @name swCommon.PagedDataService.init
+                    * @ngdoc method
+                    * @name swCommon.PagedDataService#init
                     * @methodOf swCommon.PagedDataService
                     * @description Initializes the data in the paged list. Clears the list of items
                     */
@@ -176,12 +180,12 @@
                     },
                     
                     /**
-                    * @ngdoc function 
-                    * @name swCommon.PagedDataService.find
+                    * @ngdoc method
+                    * @name swCommon.PagedDataService#find
                     * @methodOf swCommon.PagedDataService
                     * @description Calls API to return the data for the next page
                     * @param {Object} queryOptions Options for quering data from the server
-                    * @return {Object} the promise to return the data 
+                    * @returns {Object} the promise to return the data 
                     */
                     find: function (queryOptions) {
                         if (this.data.loading) {
@@ -199,11 +203,11 @@
                     
                     /**
                     * @ngdoc function 
-                    * @name swCommon.PagedDataService.search
+                    * @name swCommon.PagedDataService#search
                     * @methodOf swCommon.PagedDataService
                     * @description Calls API to search data based on the information provided in the filterOptions
                     * @param {Object} queryOptions Options for quering data from the server
-                    * @return {Object} the promise to return the filtered data 
+                    * @returns {Object} the promise to return the filtered data 
                     */                    
                     search: function (queryOptions) {
                         var deferred = $q.defer();
