@@ -114,13 +114,13 @@
                 }                ;
                 
                 function find(queryOptions, deferred, isSearch) {
-                    var options = getOptions.apply(this, queryOptions);
-                    
+                    var options = this._(getOptions)(queryOptions);
+
                     this.data.loading = true;
                     
                     var that = this;
                     $http.post(serviceBase + this.baseUrl, options)
-                  .success(function (data) {
+                     .success(function (data) {
                         if (isSearch) {
                             deferred.notify(options);
                             
