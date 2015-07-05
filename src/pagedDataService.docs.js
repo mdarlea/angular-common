@@ -1,5 +1,12 @@
 ﻿/**
 * @ngdoc property
+* @name swCommon.PagedDataService#baseUrl
+* @propertyOf swCommon.PagedDataService
+* @returns {string} base URL for calling the API
+*/
+
+/**
+* @ngdoc property
 * @name swCommon.PagedDataService#fixedPage 
 * @propertyOf swCommon.PagedDataService
 * @returns {boolean} True for paged grids, False for infinite scrolling lists                
@@ -9,7 +16,7 @@
 * @ngdoc property
 * @name swCommon.PagedDataService#data 
 * @propertyOf swCommon.PagedDataService
-* @returns {Object} The data which can be bounded to the grid on list <table>
+* @returns {Object} The data which can be bounded to the grid or list <table>
    <tr>
         <th>Property</th>
         <th>Type</th>

@@ -82,162 +82,162 @@
                 }, data);
             };
             
-            PagedDataService.prototype = (function () {
-                function getOptions(queryOptions) {
-                    var query = (queryOptions) ? queryOptions : {};
-                    var page = (this.fixedPage)
-                                ? this.data.pagingOptions.currentPage
-                                : null;
-                    var minIdentity = null;
-                    if (!this.fixedPage) {
-                        var max = this.data.items.length - 1;
-                        if (max > -1) {
-                            minIdentity = this.data.items[max].Id;
-                        }
-                    }
-                    
-                    return {
-                        queryOptions: $.extend(true, {}, query,
-                        {
-                            sortByField: (this.data.sortOptions.fields.length > 0)
-                                ? this.data.sortOptions.fields[0]
-                                : null,
-                            sortDescending: (this.data.sortOptions.directions.length > 0)
-                                ? (this.data.sortOptions.directions[0] === "desc")
-                                : false,
-                            searchText: this.data.filterOptions.filterText
-                        }),
-                        page: page,
-                        minIdentity: minIdentity,
-                        pageSize: this.data.pagingOptions.pageSize
-                    };
-                }                ;
-                
-                function find(queryOptions, deferred, isSearch) {
-                    var options = this._(getOptions)(queryOptions);
-
-                    this.data.loading = true;
-                    
-                    var that = this;
-                    $http.post(serviceBase + this.baseUrl, options)
-                     .success(function (data) {
-                        if (isSearch) {
-                            deferred.notify(options);
-                            
-                            var continueSearch = (that.data.filterOptions.filterText !== options.queryOptions.searchText);
-                            
-                            if (continueSearch) {
-                                that._(find)(queryOptions, deferred, true);
-                                return;
-                            }
-                        }
-                        
-                        if (that.fixedPage) {
-                            that.data.items = data.Content;
-                        }
-                        else {
-                            if (that.data.pagingOptions.currentPage < 1) {
-                                that.data.items = data.Content;
-                            } else {
-                                for (var i = 0; i < data.Content.length; i++) {
-                                    that.data.items.push(data.Content[i]);
-                                }
-                            }
-                            
-                            that.data.pagingOptions.currentPage++;
-                        }
-                        
-                        that.data.totalRecords = data.TotalRecords;
-                        
-                        that.data.loading = false;
-                        
-                        deferred.resolve(data);
-
-                    })
-                  .error(function (err) {
-                        
-                        that.data.loading = false;
-                        
-                        deferred.reject(err.Message);
-                    });
-                }                ;
-                
-                return {
-                    constructor: PagedDataService,
-                    
-                    /**
-                    * @ngdoc method
-                    * @name swCommon.PagedDataService#init
-                    * @methodOf swCommon.PagedDataService
-                    * @description Initializes the data in the paged list. Clears the list of items
-                    */
-                    init: function () {
-                        this.data.items = [];
-                        this.data.totalRecords = 0;
-                        this.data.totalPages = 0;
-                        this.data.pagingOptions.currentPage = 0;
-                        this.data.loading = false;
-                    },
-                    
-                    /**
-                    * @ngdoc method
-                    * @name swCommon.PagedDataService#find
-                    * @methodOf swCommon.PagedDataService
-                    * @description Calls API to return the data for the next page
-                    * @param {Object} queryOptions Options for quering data from the server
-                    * @returns {Object} the promise to return the data 
-                    */
-                    find: function (queryOptions) {
-                        if (this.data.loading) {
-                            var defer = $q.defer();
-                            defer.reject();
-                            return defer.promise;
-                        }
-                        
-                        var deferred = $q.defer();
-                        
-                        this._(find)(queryOptions, deferred, false);
-                        
-                        return deferred.promise;
-                    },
-                    
-                    /**
-                    * @ngdoc function 
-                    * @name swCommon.PagedDataService#search
-                    * @methodOf swCommon.PagedDataService
-                    * @description Calls API to search data based on the information provided in the filterOptions
-                    * @param {Object} queryOptions Options for quering data from the server
-                    * @returns {Object} the promise to return the filtered data 
-                    */                    
-                    search: function (queryOptions) {
-                        var deferred = $q.defer();
-                        
-                        if (this.data.loading) {
-                            deferred.reject();
-                            return deferred.promise;
-                        }
-                        
-                        this.data.pagingOptions.currentPage = 0;
-                        
-                        this._(find)(queryOptions, deferred, true);
-                        
-                        return deferred.promise;
-                    },
-                    
-                    // define private methods dedicated one
-                    _: function (callback) {
-                        
-                        // instance referer
-                        var self = this;
-                        
-                        // callback that will be used
-                        return function () {
-                            return callback.apply(self, arguments);
-                        };
+        PagedDataService.prototype = (function () {
+            function getOptions(queryOptions) {
+                var query = (queryOptions) ? queryOptions : {};
+                var page = (this.fixedPage)
+                            ? this.data.pagingOptions.currentPage
+                            : null;
+                var minIdentity = null;
+                if (!this.fixedPage) {
+                    var max = this.data.items.length - 1;
+                    if (max > -1) {
+                        minIdentity = this.data.items[max].Id;
                     }
                 }
-            })();
+                    
+                return {
+                    queryOptions: $.extend(true, {}, query,
+                    {
+                        sortByField: (this.data.sortOptions.fields.length > 0)
+                            ? this.data.sortOptions.fields[0]
+                            : null,
+                        sortDescending: (this.data.sortOptions.directions.length > 0)
+                            ? (this.data.sortOptions.directions[0] === "desc")
+                            : false,
+                        searchText: this.data.filterOptions.filterText
+                    }),
+                    page: page,
+                    minIdentity: minIdentity,
+                    pageSize: this.data.pagingOptions.pageSize
+                };
+            };
+                
+            function find(queryOptions, deferred, isSearch) {
+                var options = this._(getOptions)(queryOptions);
+
+                this.data.loading = true;
+                    
+                var that = this;
+                $http.post(serviceBase + this.baseUrl, options)
+                    .success(function (data) {
+                    if (isSearch) {
+                        deferred.notify(options);
+                            
+                        var continueSearch = (that.data.filterOptions.filterText !== options.queryOptions.searchText);
+                            
+                        if (continueSearch) {
+                            that._(find)(queryOptions, deferred, true);
+                            return;
+                        }
+                    }
+                        
+                    if (that.fixedPage) {
+                        that.data.items = data.Content;
+                    }
+                    else {
+                        if (that.data.pagingOptions.currentPage < 1) {
+                            that.data.items = data.Content;
+                        } else {
+                            for (var i = 0; i < data.Content.length; i++) {
+                                that.data.items.push(data.Content[i]);
+                            }
+                        }
+                            
+                        that.data.pagingOptions.currentPage++;
+                    }
+                        
+                    that.data.totalRecords = data.TotalRecords;
+                        
+                    that.data.loading = false;
+                        
+                    deferred.resolve(data);
+
+                })
+                .error(function (err) {
+                        
+                    that.data.loading = false;
+                        
+                    deferred.reject(err.Message);
+                });
+            };
+                
+            return {
+                constructor: PagedDataService,
+                    
+                /**
+                * @ngdoc method
+                * @name swCommon.PagedDataService#init
+                * @methodOf swCommon.PagedDataService
+                * @description Initializes the data in the paged list. Clears the list of items
+                */
+                init: function () {
+                    this.data.items = [];
+                    this.data.totalRecords = 0;
+                    this.data.totalPages = 0;
+                    this.data.pagingOptions.currentPage = 0;
+                    this.data.loading = false;
+                },
+                    
+                /**
+                * @ngdoc method
+                * @name swCommon.PagedDataService#find
+                * @methodOf swCommon.PagedDataService
+                * @description Calls API to return the data for the next page
+                * @param {Object} queryOptions Options for quering data from the server
+                * @returns {Object} the promise to return the data 
+                */
+                find: function (queryOptions) {
+                    if (this.data.loading) {
+                        var defer = $q.defer();
+                        defer.reject();
+                        return defer.promise;
+                    }
+                        
+                    var deferred = $q.defer();
+                        
+                    this._(find)(queryOptions, deferred, false);
+                        
+                    return deferred.promise;
+                },
+                    
+                /**
+                * @ngdoc function 
+                * @name swCommon.PagedDataService#search
+                * @methodOf swCommon.PagedDataService
+                * @description Calls API to search data based on the information provided in the filterOptions
+                * @param {Object} queryOptions Options for quering data from the server
+                * @returns {Object} the promise to return the filtered data 
+                */                    
+                search: function (queryOptions) {
+                    var deferred = $q.defer();
+                        
+                    if (this.data.loading) {
+                        deferred.reject();
+                        return deferred.promise;
+                    }
+                        
+                    this.data.pagingOptions.currentPage = 0;
+                        
+                    this._(find)(queryOptions, deferred, true);
+                        
+                    return deferred.promise;
+                },
+                    
+                // define private methods dedicated one
+                _: function (callback) {
+                        
+                    // instance referer
+                    var self = this;
+                        
+                    // callback that will be used
+                    return function () {
+                        return callback.apply(self, arguments);
+                    };
+                }
+            }
+        })();
             
-            return PagedDataService;
-        }]);
+        return PagedDataService;
+    }]);
 })();
