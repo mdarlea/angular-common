@@ -10,7 +10,8 @@
     /**
     * @ngdoc service
     * @name swCommon.ngAuthSettings    
-    * @description Provides application configuration   for different environments such as: Dev, QA, Production
+    * @description <p><b>AngularJS Provider</b></p>
+    *   Provides application configuration for different environments such as: Dev, QA, Production
     */
     angular.module('swCommon').provider('ngAuthSettings', function () {
         var settings = {};
@@ -26,7 +27,7 @@
                     * @ngdoc property
                     * @name swCommon.ngAuthSettings#indexPage
                     * @propertyOf swCommon.ngAuthSettings
-                    * @returns {string} Path to the home (index) page. <br/><i>(Default: '/home')</i>
+                    * @returns {string} Path to the application's home (index) page. <br/><i>(Default: '/home')</i>
                     */
                     indexPage: '/home',
                     
