@@ -4,7 +4,7 @@
  
 * @description This module contains AngularJS common components
 * <h2> Providers </h2>
-* - {@link swCommon.ngAuthSettingsProvider ngAuthSettings} 
+* - {@link swCommon.swAppSettingsProvider swAppSettings} 
 * <h2> Services </h2> 
 * - {@link swCommon.PagedDataService PagedDataService}
 */

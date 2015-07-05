@@ -6,7 +6,7 @@
     * @name swCommon.PagedDataService
     * @requires $http
     * @requires $q
-    * @requires swCommon.ngAuthSettings
+    * @requires swCommon.swAppSettings
     * @description Service that queries paged data.  
     * It can be used with ngGrid, any grind that supports paging or with an infinit-scrolling list
     * 
@@ -57,8 +57,8 @@
         })();     
     * </pre> 
     */
-    angular.module('swCommon').factory('PagedDataService', ['$http', '$q', 'ngAuthSettings', function ($http, $q, ngAuthSettings) {
-        var serviceBase = ngAuthSettings.apiServiceBaseUri;
+    angular.module('swCommon').factory('PagedDataService', ['$http', '$q', 'swAppSettings', function ($http, $q, swAppSettings) {
+        var serviceBase = swAppSettings.apiServiceBaseUri;
  
         var PagedDataService = function (baseUrl, options) {
             this.baseUrl = baseUrl;
