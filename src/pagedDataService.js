@@ -6,6 +6,10 @@
     * @name swCommon
  
     * @description This module contains AngularJS common components
+    * <h2> Providers </h2>
+    * - {@link swCommon.ngAuthSettingsProvider ngAuthSettings provider} 
+    * <h2> Services </h2> 
+    * - {@link swCommon.PagedDataService PagedDataService} abstract class
     */
     var swCommon = angular.module('swCommon', []);
     
@@ -15,7 +19,8 @@
     * @requires $http
     * @requires $q
     * @requires swCommon.ngAuthSettings
-    * @description Service that queries paged data . It can be used with ngGrid, any grind that supports paging or with an infinit-scrolling list
+    * @description Service that queries paged data.  
+    * It can be used with ngGrid, any grind that supports paging or with an infinit-scrolling list
     * 
     * @constructor
     * @param {string} baseUrl base URL for calling the API
@@ -41,6 +46,28 @@
         * <tr>
         * <td>currentPage</td><td><a href="" class="label type-hint type-hint-number">number</a></td> 
         * <td>The current page. This option aplies only to paged grids</td></tr></table> 
+     * @example
+     * <pre>
+        (function () {
+            'use strict';
+
+            //A service that inherits from the PagedDataService
+            angular.module('app').factory('StreamedTweetsService', ['PagedDataService', 
+                function (PagedDataService) {
+                    var StreamedTweetsService = function() {
+                        PagedDataService.apply(this, ['api/StreamedTweets', {                            
+                                pagingOptions: {
+                                    pageSize: 5
+                                }
+                        }]);
+                    };
+
+                    StreamedTweetsService.prototype = new PagedDataService();
+
+                    return StreamedTweetsService;
+                }]);
+        })();     
+    * </pre> 
     */
     angular.module('swCommon').factory('PagedDataService', ['$http', '$q', 'ngAuthSettings', function ($http, $q, ngAuthSettings) {
         var serviceBase = ngAuthSettings.apiServiceBaseUri;

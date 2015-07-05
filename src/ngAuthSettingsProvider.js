@@ -5,6 +5,20 @@
     * @ngdoc service
     * @name swCommon.ngAuthSettingsProvider  
     * @description {@link swCommon.ngAuthSettings ngAuthSettings} provider
+    * @example    
+    *   <pre>
+        (function () {
+            'use strict';
+
+            angular.module('app').config(['ngAuthSettingsProvider', 
+                function (ngAuthSettingsProvider) {
+                    ngAuthSettingsProvider.setSettings({
+                        apiServiceBaseUri: "http://www.swaksoft.com/",
+                        clientId: "SocialMediaApp"
+                    });
+            }]);
+        })();      
+    *  </pre>  
     */ 
 
     /**
@@ -16,6 +30,13 @@
     angular.module('swCommon').provider('ngAuthSettings', function () {
         var settings = {};
         
+       /**
+       * @ngdoc method
+       * @name swCommon.ngAuthSettings#setSettings
+       * @methodOf swCommon.ngAuthSettings
+       * @description Sets the configuration properties
+       * @param {Object} value Configuration property values
+       */
         this.setSettings = function (value) {
             settings = value;
         };
