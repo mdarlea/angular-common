@@ -24,7 +24,7 @@
     /**
     * @ngdoc service
     * @name swCommon.ngAuthSettings    
-    * @description <p><b>AngularJS Provider</b></p>
+    * @description {@link swCommon.ngAuthSettingsProvider Provider} <br/>
     *   Provides application configuration for different environments such as: Dev, QA, Production
     */
     angular.module('swCommon').provider('ngAuthSettings', function () {

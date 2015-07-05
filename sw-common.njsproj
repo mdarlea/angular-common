@@ -33,6 +33,7 @@
     <Compile Include="gruntfile.js" />
     <Compile Include="gulpfile.js" />
     <Compile Include="server.js" />
+    <Compile Include="src\authenticationTokenFactory.js" />
     <Compile Include="src\ngAuthSettingsProvider.js" />
     <Compile Include="src\pagedDataService.docs.js" />
     <Compile Include="src\pagedDataService.js" />
