@@ -36,6 +36,7 @@
     <Compile Include="src\ngAuthSettingsProvider.js" />
     <Compile Include="src\pagedDataService.docs.js" />
     <Compile Include="src\pagedDataService.js" />
+    <Compile Include="src\_module.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="snippets\angProvider.snippet" />

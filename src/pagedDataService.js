@@ -3,18 +3,6 @@
     
     /**
     * @ngdoc service
-    * @name swCommon
- 
-    * @description This module contains AngularJS common components
-    * <h2> Providers </h2>
-    * - {@link swCommon.ngAuthSettingsProvider ngAuthSettings provider} 
-    * <h2> Services </h2> 
-    * - {@link swCommon.PagedDataService PagedDataService} abstract class
-    */
-    var swCommon = angular.module('swCommon', []);
-    
-    /**
-    * @ngdoc service
     * @name swCommon.PagedDataService
     * @requires $http
     * @requires $q
