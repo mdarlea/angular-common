@@ -14,7 +14,7 @@
     * @name swCommon.PagedDataService
     * @requires $http
     * @requires $q
-    * @requires ngAuthSettings
+    * @requires swCommon.ngAuthSettings
     * @description Service that queries paged data . It can be used with ngGrid, any grind that supports paging or with an infinit-scrolling list
     * 
     * @constructor

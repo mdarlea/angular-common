@@ -33,12 +33,16 @@
     <Compile Include="gruntfile.js" />
     <Compile Include="gulpfile.js" />
     <Compile Include="server.js" />
+    <Compile Include="src\ngAuthSettingsProvider.js" />
     <Compile Include="src\pagedDataService.docs.js" />
     <Compile Include="src\pagedDataService.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="snippets\angProvider.snippet" />
+    <Content Include="snippets\jsClass.snippet" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="snippets\" />
     <Folder Include="src\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />

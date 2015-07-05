@@ -1,42 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CodeSnippets
-    xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
-    <CodeSnippet Format="1.5.0">
-        <Header>
-          <SnippetTypes>
-            <SnippetType>Expansion</SnippetType>
-          </SnippetTypes>          
-          <Title>Class With Private Members</Title>
-          <Author>Michelle Darlea</Author>
-          <Description>Prototype pattern that uses a closure to allow declarations of private class members</Description>
-          <HelpUrl>https://github.com/mdarlea/</HelpUrl>
-          <Shortcut>jqClass</Shortcut>
-        </Header>
-        <Snippet>
-          <Declarations>
-            <Literal Editable="true">
-              <ID>name</ID>
-              <ToolTip>Class name</ToolTip>
-              <Default>name</Default>
-              <Function></Function>
-            </Literal>
-          </Declarations>
-          <Code Language="javascript">
-                <![CDATA[$var $name$ = function () {$end$
-                };$end$
-                $end$
-                $name$.prototype = (function () {$end$
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.5.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>Class With Private Members</Title>
+      <Author>Michelle Darlea</Author>
+      <Description>Prototype pattern that uses a closure to allow declarations of private class members</Description>
+      <HelpUrl>https://github.com/mdarlea/</HelpUrl>
+      <Shortcut>jqClass</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>name</ID>
+          <ToolTip>Class name</ToolTip>
+          <Default>name</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="javascript" Delimiter="$"><![CDATA[var $name$$selected$ = function () {$end$
+                //properties initialization 
+			    $end$
+             };$end$
+             $end$
+             $name$.prototype = (function () {$end$
                   return {$end$
-                    constructor: PagedDataService,$end$
+                    constructor: $name$,$end$
                     $end$
                     _: function (callback) {                    
                       var self = this;
                       return function () {return callback.apply(self, arguments);};
                     }$end$
                   }
-                })();$end$                 
-              ]]>
-            </Code>
-        </Snippet>
-    </CodeSnippet>
+             })();$end$                 
+              ]]></Code>
+    </Snippet>
+  </CodeSnippet>
 </CodeSnippets>
