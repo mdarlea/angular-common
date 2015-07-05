@@ -24,14 +24,14 @@
     * @param {Object} options.filterOptions Options for filtering data <table><tr>
          * <td>filterText</td><td><a href="" class="label type-hint type-hint-string">string</a></td>       
          * <td>Text to filter data</td></tr></table>    
-    * @param {Object} options.sortOptions Options for sorting data <table>
+    * @param {Object} [options.sortOptions={ fields: new Array(), directions: new Array("asc") }] Options for sorting data <table>
          * <tr>
          * <td>fields</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
          * <td>Sort data by the given fields</td></tr>  
          * <tr>
          * <td>directions</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
          * <td>'asc' for sorting arcending, 'desc' for sorting descending. Default is ['asc']</td></tr></table>
-    * @param {Object} [options.pagingOptions={pageSizes: new Array(5, 10, 20, 50, 100), pageSize: 10}] Options for paging <table>
+    * @param {Object} [options.pagingOptions = { pageSizes: new Array(5, 10, 20, 50, 100), pageSize: 10 }] Options for paging <table>
         * <tr>
         * <td>pageSizes</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
         * <td>A list of possible page sizes. This option aplies only to paged grids. Default is [5, 10, 20, 50, 100].</td></tr>

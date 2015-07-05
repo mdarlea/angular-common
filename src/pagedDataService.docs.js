@@ -62,17 +62,17 @@
          <td>Sort data by the given fields</td></tr>  
          <tr>
          <td>directions</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
-         <td>'asc' for sorting arcending, 'desc' for sorting descending. Default is ['asc']</td></tr></table></td>
+         <td>'asc' for sorting arcending, 'desc' for sorting descending. <i>(Default: ['asc'])</i></td></tr></table></td>
    </tr>
     <tr>
       <td>pagingOptions</td>
       <td><a href="" class="label type-hint type-hint-object">Object</a></td>
       <td>Options for paging <table><tr>
         <td>pageSizes</td><td><a href="" class="label type-hint type-hint-array">Array</a></td>
-        <td>A list of possible page sizes. This option aplies only to paged grids. Default is [5, 10, 20, 50, 100].</td></tr>
+        <td>A list of possible page sizes. This option aplies only to paged grids. <i>(Default: [5, 10, 20, 50, 100])</i></td></tr>
         <tr>
         <td>pageSize</td><td><a href="" class="label type-hint type-hint-number">number</a></td> 
-        <td>Specifies the number of items on a single page. Default is 10.</td></tr> 
+        <td>Specifies the number of items on a single page. <i>(Default: 10)</i></td></tr> 
         <tr>
         <td>currentPage</td><td><a href="" class="label type-hint type-hint-number">number</a></td> 
         <td>The current page. This option aplies only to paged grids</td></tr></table></td>
