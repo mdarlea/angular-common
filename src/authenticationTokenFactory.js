@@ -1,6 +1,11 @@
 ﻿(function () {
     'use strict';
     
+    /**
+    * @ngdoc service
+    * @name swCommon.AuthenticationToken
+    * @description Class responsible for the state and behavior of an authentication token
+    */    
     angular.module('swCommon').factory('AuthenticationToken', [function () {
             
             var AuthenticationToken = function (token) {
@@ -17,6 +22,16 @@
             return AuthenticationToken;
         }]);
     
+    /**
+    * @ngdoc service
+    * @name swCommon.$authenticationTokenFactory
+    * @requires localStorageService
+    * @requires swCommon.AuthenticationToken     
+    * @description Service that performs teh following functions:
+    *   - reads an authentication token from a response and stores it in the local storage
+    *   - gets the current authentication token from the local storage
+    *   - removes the current authetnication token from the local storage   
+    */              
     angular.module('swCommon').factory('$authenticationTokenFactory',
         ['localStorageService', 'AuthenticationToken', function (localStorageService, AuthenticationToken) {
             
