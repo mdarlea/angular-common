@@ -1,13 +1,10 @@
 ﻿# sw-common
 ### [AngularJS](http://angularjs.org/) common utility functions and token-based authentication service
 
-<div class="nuget-badge">
-        <p>
-            <code>
-                PM&gt; Install-Package Swaksoft.Core
-                            </code>
-        </p>
-    </div>
+## [Nuget (LESS)](https://www.nuget.org/packages/Bootstrap.v3.Datetimepicker/): ![NuGet version](https://badge.fury.io/nu/Bootstrap.v3.Datetimepicker.png)
+```
+PM> Install-Package Bootstrap.v3.Datetimepicker
+```
 
 
 
