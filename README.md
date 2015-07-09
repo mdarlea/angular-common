@@ -1,8 +1,6 @@
 ﻿### [AngularJS](http://angularjs.org/) common utility functions and token-based authentication service
 
-<h1><code ng:non-bindable="">swCommon</code>
-<div><span class="hint"></span></div>
-</h1>
+<h2>swCommon</h2>
 <div>	
 	<div class="description">
 		<div class="swcommon-page">
@@ -21,9 +19,7 @@
 	</div>
 </div>
 
-<h1><code ng:non-bindable="">swAuth</code>
-<div><span class="hint"></span></div>
-</h1>
+<h2>swAuth</h2>
 <div>	
 	<div class="description">
 		<div class="swauth-page">
