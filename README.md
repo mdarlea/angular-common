@@ -3,8 +3,7 @@
 <h1><code ng:non-bindable="">swCommon</code>
 <div><span class="hint"></span></div>
 </h1>
-<div>
-	<h2 id="description">Description</h2>
+<div>	
 	<div class="description">
 		<div class="swcommon-page">
 			<p>This module contains AngularJS common components</p>
@@ -25,8 +24,7 @@
 <h1><code ng:non-bindable="">swAuth</code>
 <div><span class="hint"></span></div>
 </h1>
-<div>
-	<h2 id="description">Description</h2>
+<div>	
 	<div class="description">
 		<div class="swauth-page">
 			<p>This module contains token based authentication services</p>
