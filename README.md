@@ -5,9 +5,10 @@
 	<p>This module contains AngularJS common components</p>
 
 	<h4 id="description_-providers"> Providers </h4>
-	<ul>
-		<li><a href="http://swaksoft.com/docs/#/api/swCommon.swAppSettingsProvider">swAppSettings</a> </li>
-	</ul>
+	<dl>
+		<dt><a href="http://swaksoft.com/docs/#/api/swCommon.swAppSettingsProvider">swAppSettings</a> </dt>
+		<dd>Provides application configuration for different environments</dd>
+	</dl>
 
 	<h4 id="description_-services"> Services </h4> 
 	<ul>
