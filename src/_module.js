@@ -9,3 +9,12 @@
 * - {@link swCommon.PagedDataService PagedDataService}
 */
 var swCommon = angular.module('swCommon', []);
+
+/**
+* @ngdoc service
+* @name swAuth
+ 
+* @description This module contains token based authentication services
+* - {@link swAuth.$authenticationTokenFactory $authenticationTokenFactory} 
+*/
+var swAuth = angular.module('swAuth', []);

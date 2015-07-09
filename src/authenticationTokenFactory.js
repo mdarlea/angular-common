@@ -3,7 +3,7 @@
     
     /**
     * @ngdoc service
-    * @name swCommon.AuthenticationToken
+    * @name swAuth.AuthenticationToken
     * @description Class responsible for the state and behavior of an authentication token
     * @constructor
     * @param {Object} token The authentication token object
@@ -23,13 +23,13 @@
      *  var token = new AuthenticationToken(value);
      * </pre>     
     */    
-    angular.module('swCommon').factory('AuthenticationToken', [function () {
+    angular.module('swAuth').factory('AuthenticationToken', [function () {
             
             var AuthenticationToken = function (token) {
                 /**
                 * @ngdoc property
-                * @name swCommon.AuthenticationToken#token 
-                * @propertyOf swCommon.AuthenticationToken
+                * @name swAuth.AuthenticationToken#token 
+                * @propertyOf swAuth.AuthenticationToken
                 * @returns {Object} The authentication token object
                  */
                 this.token = token;
@@ -38,10 +38,10 @@
             AuthenticationToken.prototype = {
                 /**
                 * @ngdoc method
-                * @name swCommon.AuthenticationToken#isExpired
-                * @methodOf swCommon.AuthenticationToken
+                * @name swAuth.AuthenticationToken#isExpired
+                * @methodOf swAuth.AuthenticationToken
                 * @description Check if the authentication token is expired   
-                * @returns {boolean} True if teh authetnication token i expired, False otherwise
+                * @returns {boolean} True if the authetnication token i expired, False otherwise
                 */
                 isExpired: function () {
                     //ToDo: to be implemented
@@ -54,15 +54,15 @@
     
     /**
     * @ngdoc service
-    * @name swCommon.$authenticationTokenFactory
+    * @name swAuth.$authenticationTokenFactory
     * @requires localStorageService
-    * @requires swCommon.AuthenticationToken     
+    * @requires swAuth.AuthenticationToken     
     * @description Service that performs the following functions:
     *   - reads an authentication token from a response and stores it in the local storage
     *   - gets the current authentication token from the local storage
     *   - removes the current authetnication token from the local storage   
     */              
-    angular.module('swCommon').factory('$authenticationTokenFactory',
+    angular.module('swAuth').factory('$authenticationTokenFactory',
         ['localStorageService', 'AuthenticationToken', function (localStorageService, AuthenticationToken) {
             
             var key = "authorizationData";
@@ -70,8 +70,8 @@
             var factory = {
                 /**
                 * @ngdoc method
-                * @name swCommon.$authenticationTokenFactory#createFrom
-                * @methodOf swCommon.$authenticationTokenFactory
+                * @name swAuth.$authenticationTokenFactory#createFrom
+                * @methodOf swAuth.$authenticationTokenFactory
                 * @description Creates the authentication token object from the HTTP response and stores it in the local storage
                 * @param {Object} response The authentication token JObject issued by the server
                 * @param {datetime} response..expires Token expiration date time
@@ -112,8 +112,8 @@
                 
                 /**
                 * @ngdoc method
-                * @name swCommon.$authenticationTokenFactory#removeToken
-                * @methodOf swCommon.$authenticationTokenFactory
+                * @name swAuth.$authenticationTokenFactory#removeToken
+                * @methodOf swAuth.$authenticationTokenFactory
                 * @description Removes the authentication token from the local storage                
                 */
                 removeToken: function () {
@@ -122,10 +122,10 @@
                 
                 /**
                 * @ngdoc method
-                * @name swCommon.$authenticationTokenFactory#getToken
-                * @methodOf swCommon.$authenticationTokenFactory
+                * @name swAuth.$authenticationTokenFactory#getToken
+                * @methodOf swAuth.$authenticationTokenFactory
                 * @description Gets the authentication token from the local storage
-                * @returns {AuthenticationToken} {@link swCommon.AuthenticationToken AuthenticationToken} the authentication token object stored in the local storage
+                * @returns {AuthenticationToken} {@link swAuth.AuthenticationToken AuthenticationToken} the authentication token object stored in the local storage
                 */
                 getToken: function () {
                     var token = localStorageService.get(key);
