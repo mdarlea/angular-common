@@ -34,6 +34,7 @@
     <Compile Include="gulpfile.js" />
     <Compile Include="server.js" />
     <Compile Include="src\authenticationTokenFactory.js" />
+    <Compile Include="src\authService.js" />
     <Compile Include="src\swAppSettingsProvider.js" />
     <Compile Include="src\pagedDataService.docs.js" />
     <Compile Include="src\pagedDataService.js" />

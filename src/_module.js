@@ -16,5 +16,6 @@ var swCommon = angular.module('swCommon', []);
  
 * @description This module contains token based authentication services
 * - {@link swAuth.$authenticationTokenFactory $authenticationTokenFactory} 
+* - {@link swAuth.$authService $authService} 
 */
-var swAuth = angular.module('swAuth', []);
+var swAuth = angular.module('swAuth', ['swCommon']);

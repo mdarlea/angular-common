@@ -27,7 +27,7 @@
     * @description {@link swCommon.swAppSettingsProvider Provider} <br/>
     *   Provides application configuration for different environments such as: Dev, QA, Production
     */
-    angular.module('swCommon').provider('spAppSettings', function () {
+    angular.module('swCommon').provider('swAppSettings', function () {
         var settings = {};
         
        /**
