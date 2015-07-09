@@ -24,9 +24,11 @@
 		<dt><a href="http://swaksoft.com/docs/#/api/swAuth.$authenticationTokenFactory">$authenticationTokenFactory</a> </dt>
 		<dd>
 			Service that performs the following functions:
-			- reads an authentication token from a response and stores it in the local storage
-			- gets the current authentication token from the local storage
-			- removes the current authetnication token from the local storage
+			<ul>
+				<li>reads an authentication token from a response and stores it in the local storage</li>
+				<li>gets the current authentication token from the local storage</li>
+				<li>removes the current authetnication token from the local storage</li>
+			</ul>
 		</dd>
 	</dl>
 </div>
