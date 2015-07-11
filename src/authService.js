@@ -127,6 +127,15 @@
                     return deferred.promise;
                 },
                 
+                /**
+                * @ngdoc method
+                * @name swAuth.$authService#login
+                * @methodOf swAuth.$authService
+                * @param {Object} loginData Login information
+                * @description Logs in the current user
+                * @returns {Object} the promise to return the authorization token for the logged in user from the server. 
+                 * See the {@link swAuth.$authService#authorize authorize} method for a description of the JSON object returned by the service response                 
+                */   
                 login: function (loginData) {
                     
                     var data = "grant_type=password&username=" + loginData.userName + "&password=" + loginData.password;
@@ -175,6 +184,18 @@
                     service.authentication.useRefreshTokens = false;
                 },
                 
+                /**
+                * @ngdoc method
+                * @name swAuth.$authService#fillAuthData
+                * @methodOf swAuth.$authService
+                * @description Reads the authentication token from the local storage and updates the state of the {@link swAuth.$authService#authentication authentication} property with this information
+                * @example
+                * <pre>
+                    app.run(['$authService', function ($authService) {
+                        $authService.fillAuthData();
+                    }]);                 
+                * </pre>
+                */    
                 fillAuthData: function () {
                     
                     var authData = $authenticationTokenFactory.getToken();
@@ -215,6 +236,17 @@
                     return deferred.promise;
                 },
                 
+                /**
+                * @ngdoc method
+                * @name swAuth.$authService#registerExternal
+                * @methodOf swAuth.$authService
+                * @description Registers the user with a third party provider such as Twitter or Facebook and authenticates this user
+                * @param {object} registerExternalData The infomration about the user that is registered. It should contain properties with information about the external provider, the user name and any additional information that should be saved in the registered user profile
+                * @param {object} registerExternalData.provider The external provider name
+                * @param {object} registerExternalData.userName The user name                
+                * @returns {Object} the promise to return the authorization token from the server for the registered user. 
+                 * See the {@link swAuth.$authService#authorize authorize} method for a description of the JSON object returned by the service response
+                */                
                 registerExternal: function (registerExternalData) {
                     
                     var deferred = $q.defer();
