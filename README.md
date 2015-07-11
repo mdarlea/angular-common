@@ -30,5 +30,9 @@
 				<li>removes the current authetnication token from the local storage</li>
 			</ul>
 		</dd>
+		<dt><a href="http://swaksoft.com/docs/#/api/swAuth.$authService">$authService</a> </dt>
+		<dd>
+			Authentication service
+		</dd>
 	</dl>
 </div>
