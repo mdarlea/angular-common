@@ -16,7 +16,37 @@
             var serviceBase = swAppSettings.apiServiceBaseUri;
             
             var service = {
-                
+                /**
+                * @ngdoc property
+                * @name swAuth.$authService#authentication
+                * @propertyOf swAuth.$authService
+                * @returns {object} Current user login information <table>
+                   <tr>
+                        <th>Property</th>
+                        <th>Type</th>
+                        <th>Details</th>
+                   </tr>
+                   <tr>
+                       <td>isAuth</td>
+                       <td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td>
+                       <td>True if current user is authenticated, False otherwise</td>
+                   </tr> 
+                   <tr>
+                       <td>isAuthorizing</td>
+                       <td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td>
+                       <td>True if the authorization process is currently taking place, False otherwise</td>
+                   </tr> 
+                   <tr>
+                       <td>userName</td>
+                       <td><a href="" class="label type-hint type-hint-string">String</a></td>
+                       <td>The authenticated user name</td>
+                   </tr> 
+                   <tr>
+                       <td>useRefreshTokens</td>
+                       <td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td>
+                       <td>True is refresh authorization tokens should be used. False otherwise</td>
+                   </tr>                                                                
+                */
                 authentication: {
                     isAuth: false,
                     isAuthorizing: false,
@@ -40,6 +70,18 @@
                     });
                 },
                 
+                /**
+                * @ngdoc method
+                * @name swAuth.$authService#obtainAccessToken
+                * @methodOf swAuth.$authService
+                * @description Calls the authorization service to authenticate the current user and issue the authentication token
+                * @param {string} [provider='undefined'] External provider name. Example: Twitter, Facebook etc.
+                * @param {Object} [externalData='undefined'] Oauth information, applicable only if provider is not null or undefined
+                * @param {string} [externalData.externalAccessToken='undefined'] OAuth token
+                * @param {string} [externalData.oauthVerifier='undefined'] OAuth verifier
+                * @returns {Object} the promise to return the authorization token from the server. 
+                 * See the {@link swAuth.$authService#authorize authorize} method for a description of the JSON object returned by the service response
+                */
                 obtainAccessToken: function (provider, externalData) {
                     
                     var deferred = $q.defer();
@@ -118,6 +160,12 @@
                     return deferred.promise;
                 },
                 
+                /**
+                * @ngdoc method
+                * @name swAuth.$authService#logOut
+                * @methodOf swAuth.$authService
+                * @description Logs the current user out and removes the authentication token from the local storage
+                */                
                 logOut: function () {
                     
                     $authenticationTokenFactory.removeToken();
@@ -188,6 +236,21 @@
                     return deferred.promise;
                 },
                 
+                /**
+                * @ngdoc method
+                * @name swAuth.$authService#authorize
+                * @methodOf swAuth.$authService
+                * @description Authenticates the current user and stores the authentication token in the local storage                
+                * @param {Object} response The authentication token JObject issued by the server
+                * @param {datetime} response..expires Token expiration date time
+                * @param {datetime} response..issued Date time when the token was issued by the server
+                * @param {string} response.access_token The authentication token encrypted string
+                * @param {string} response.expires_in Token expiration time span
+                * @param {string} response.externalUserName The external user name, the same as user name
+                * @param {boolean} response.hasRegistered True if the user was registered, False otherwise              
+                * @param {string} response.token_type The value is always "bearer" for token based security                
+                * @param {string} response.userName The user name
+                */
                 authorize: function (response) {
                     service.externalAuthData.provider = response.provider;
                     this._authorize(response);
