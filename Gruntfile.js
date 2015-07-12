@@ -161,6 +161,8 @@ module.exports = function (grunt) {
     //findModule: Adds a given module to config
     var foundModules = {};
     var prefix = 'sw';
+    var modulePrefix = 'sw';
+
     function findModule(name) {
         var modName = toAttribute(name);
 
@@ -242,7 +244,7 @@ module.exports = function (grunt) {
                 var dependencies = moduleCode.substring(depArrayStart + 1, depArrayEnd);
                 dependencies.split(',').forEach(function (dep) {
                     var depName = dep.trim().replace(/['"]/g, '');
-                    if (depName.substring(0,prefix.length) === prefix) {
+                    if (depName.substring(0,prefix.length).toLowerCase() === modulePrefix) {
                         if (deps.indexOf(depName) < 0) {
                             deps.push(depName);
                             //Get dependencies for this new dependency
