@@ -23,7 +23,7 @@ module.exports = function (grunt) {
             filename: '',
             prefix: 'sw',
             modulePrefix: 'sw',
-            moduleName: 'sw.common'
+            moduleName: ''
         });
 
         grunt.config.set("modules", []);
