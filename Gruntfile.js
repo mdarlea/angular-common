@@ -13,7 +13,7 @@
                 sourceLink: 'https://github.com/mdarlea/angular-common/blob/master/{{file}}'
             },
             api: {
-                src: ['src/*.js', '!src/*.spec.js'],
+                src: ['src/**/*.js', '!src/**/*.spec.js'],
                 title: 'API Documentation'
             }
         },

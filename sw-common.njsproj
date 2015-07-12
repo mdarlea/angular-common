@@ -33,12 +33,13 @@
     <Compile Include="gruntfile.js" />
     <Compile Include="gulpfile.js" />
     <Compile Include="server.js" />
-    <Compile Include="src\authenticationTokenFactory.js" />
-    <Compile Include="src\authService.js" />
-    <Compile Include="src\swAppSettingsProvider.js" />
-    <Compile Include="src\pagedDataService.docs.js" />
-    <Compile Include="src\pagedDataService.js" />
-    <Compile Include="src\utilities.js" />
+    <Compile Include="src\sw-auth\authenticationTokenFactory.js" />
+    <Compile Include="src\sw-auth\authService.js" />
+    <Compile Include="src\sw-auth\AuthenticationToken.js" />
+    <Compile Include="src\sw-common\swAppSettingsProvider.js" />
+    <Compile Include="src\sw-common\pagedDataService.docs.js" />
+    <Compile Include="src\sw-common\pagedDataService.js" />
+    <Compile Include="src\sw-common\utilities.js" />
     <Compile Include="src\_module.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
@@ -48,6 +49,8 @@
   <ItemGroup>
     <Folder Include="snippets\" />
     <Folder Include="src\" />
+    <Folder Include="src\sw-auth\" />
+    <Folder Include="src\sw-common\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
   <ProjectExtensions>
