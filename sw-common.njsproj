@@ -38,6 +38,7 @@
     <Compile Include="src\swAppSettingsProvider.js" />
     <Compile Include="src\pagedDataService.docs.js" />
     <Compile Include="src\pagedDataService.js" />
+    <Compile Include="src\utilities.js" />
     <Compile Include="src\_module.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />

@@ -10,6 +10,12 @@
 		<dd>Provides application configuration for different environments</dd>
 	</dl>
 
+	<h4 id="description_-services"> Objects </h4> 
+	<dl>
+		<dt><a href="http://swaksoft.com/docs/#/api/swCommon.$utilities">$utilities</a></dt>
+		<dd>Utility functions (helpers)</dd>
+	</dl>
+
 	<h4 id="description_-services"> Services </h4> 
 	<dl>
 		<dt><a href="http://swaksoft.com/docs/#/api/swCommon.PagedDataService">PagedDataService</a></dt>

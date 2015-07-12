@@ -217,7 +217,7 @@
                 },
                     
                 /**
-                * @ngdoc function 
+                * @ngdoc method 
                 * @name swCommon.PagedDataService#search
                 * @methodOf swCommon.PagedDataService
                 * @description Calls API to search data based on the information provided in the filterOptions

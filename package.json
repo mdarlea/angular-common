@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "AngularJS common utility functions and token-based authentication service",
   "main": "server.js",
-  "author": "Michelle Darlea <mdarlea@gmail.com>",
+  "author": "Michelle Darlea <mdarlea@gmail.com> (https://github.com/mdarlea)",
   "scripts": {
     "start": "node server.js"
   },
