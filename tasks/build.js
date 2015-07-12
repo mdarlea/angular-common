@@ -14,6 +14,7 @@ module.exports = function (grunt) {
     });
 
     var _options = {};
+    var _foundModules = {};
 
     grunt.registerTask('build', 'Create build files', function () {
         var _ = grunt.util._;
@@ -26,10 +27,10 @@ module.exports = function (grunt) {
             moduleName: ''
         });
 
-        grunt.config.set("modules", []);
-        grunt.config.set("pkg", grunt.file.readJSON('package.json'));
-        grunt.config.set("dist", 'dist');
-        grunt.config.set("meta", {
+        configTask("modules", []);
+        configTask("pkg", grunt.file.readJSON('package.json'));
+        configTask("dist", 'dist');
+        configTask("meta", {
             modules: 'angular.module(\'<%= build.options.moduleName %>\', [<%= srcModules %>]);',
             tplmodules: 'angular.module(\'<%= build.options.moduleName %>.tpls\', [<%= tplModules %>]);',
             all: 'angular.module(\'<%= build.options.moduleName %>\', [\'<%= build.options.moduleName %>.tpls\', <%= srcModules %>]);',
@@ -97,13 +98,17 @@ module.exports = function (grunt) {
         grunt.task.run(['concat', 'uglify', 'makeModuleMappingFile']);
     });
     
-    var foundModules = {};
-  
+    function configTask(name, value) {
+        if (!grunt.config.get(name, value)) {
+            grunt.config.set(name, value);    
+        }
+    }
+
     function findModule(name) {
         var modName = toAttribute(name);
         
-        if (foundModules[modName]) { return; }
-        foundModules[modName] = true;
+        if (_foundModules[modName]) { return; }
+        _foundModules[modName] = true;
 
         function breakup(text, separator) {
             return text.replace(/[A-Z]/g, function (match) {
@@ -198,7 +203,6 @@ module.exports = function (grunt) {
         return deps;
     }
     
-
     function toAttribute(str) {
         var sep = str.indexOf('-');
         return (sep > -1) ? (str.substring(0, sep) + ucwords(str.substring(sep + 1))) : str;
