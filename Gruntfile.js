@@ -240,9 +240,9 @@ module.exports = function (grunt) {
                 var depArrayStart = moduleCode.indexOf('[');
                 var depArrayEnd = moduleCode.indexOf(']', depArrayStart);
                 var dependencies = moduleCode.substring(depArrayStart + 1, depArrayEnd);
-                dependencies.split(',').forEach(function(dep) {
-                    if (dep.indexOf(prefix) > -1) {
-                        var depName = dep.trim().replace(/['"]/g, '');
+                dependencies.split(',').forEach(function (dep) {
+                    var depName = dep.trim().replace(/['"]/g, '');
+                    if (depName.substring(0,prefix.length) === prefix) {
                         if (deps.indexOf(depName) < 0) {
                             deps.push(depName);
                             //Get dependencies for this new dependency
