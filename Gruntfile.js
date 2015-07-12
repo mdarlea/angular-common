@@ -64,7 +64,7 @@
         },
         clean: ['dist']
     });
-    
+
     grunt.loadTasks('tasks');
     
     grunt.loadNpmTasks('grunt-debug-task');
@@ -73,6 +73,7 @@
     grunt.loadNpmTasks('grunt-ngdocs');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    
     
     grunt.registerTask('default', ['clean', 'build', 'ngdocs', 'connect']);
 };

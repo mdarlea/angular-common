@@ -13,8 +13,18 @@ module.exports = function (grunt) {
         grunt.log.writeln('File ' + moduleMappingJs.cyan + ' created.');
     });
 
+    var _options = {};
+
     grunt.registerTask('build', 'Create build files', function () {
         var _ = grunt.util._;
+
+        // Merge task-specific options with these defaults
+        _options = this.options({
+            filename: '',
+            prefix: 'sw',
+            modulePrefix: 'sw',
+            moduleName: 'sw.common'
+        });
 
         grunt.config.set("modules", []);
         grunt.config.set("pkg", grunt.file.readJSON('package.json'));
@@ -86,19 +96,15 @@ module.exports = function (grunt) {
         
         grunt.task.run(['concat', 'uglify', 'makeModuleMappingFile']);
     });
-
-    //Common ui.bootstrap module containing all modules for src and templates
-    //findModule: Adds a given module to config
-    var foundModules = {};
-    var prefix = 'sw';
-    var modulePrefix = 'sw';
     
+    var foundModules = {};
+  
     function findModule(name) {
         var modName = toAttribute(name);
         
         if (foundModules[modName]) { return; }
         foundModules[modName] = true;
-        
+
         function breakup(text, separator) {
             return text.replace(/[A-Z]/g, function (match) {
                 return separator + match;
@@ -107,7 +113,9 @@ module.exports = function (grunt) {
         function enquote(str) {
             return '\'' + str + '\'';
         }
-        
+
+        var prefix = _options.prefix;
+
         var path = (name.substring(0, prefix.length + 1).toLowerCase() === prefix + '-') 
                         ? name 
                         : name.substring(0, prefix.length).toLowerCase() + "-" + lcwords(name.substring(prefix.length))
@@ -172,6 +180,9 @@ module.exports = function (grunt) {
                 var depArrayStart = moduleCode.indexOf('[');
                 var depArrayEnd = moduleCode.indexOf(']', depArrayStart);
                 var dependencies = moduleCode.substring(depArrayStart + 1, depArrayEnd);
+
+                var modulePrefix = _options.modulePrefix;
+
                 dependencies.split(',').forEach(function (dep) {
                     var depName = dep.trim().replace(/['"]/g, '');
                     if (depName.substring(0, modulePrefix.length).toLowerCase() === modulePrefix) {
