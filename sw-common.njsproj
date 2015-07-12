@@ -40,12 +40,14 @@
     <Compile Include="src\sw-common\pagedDataService.docs.js" />
     <Compile Include="src\sw-common\pagedDataService.js" />
     <Compile Include="src\sw-common\utilities.js" />
+    <Compile Include="tasks\build.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="snippets\angProvider.snippet" />
     <Content Include="snippets\jsClass.snippet" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="tasks\" />
     <Folder Include="snippets\" />
     <Folder Include="src\" />
     <Folder Include="src\sw-auth\" />
