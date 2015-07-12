@@ -15,7 +15,27 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', 'Create build files', function () {
         var _ = grunt.util._;
-        
+
+        grunt.config.set("modules", []);
+        grunt.config.set("pkg", grunt.file.readJSON('package.json'));
+        grunt.config.set("dist", 'dist');
+        grunt.config.set("meta", {
+            modules: 'angular.module(\'<%= build.options.moduleName %>\', [<%= srcModules %>]);',
+            tplmodules: 'angular.module(\'<%= build.options.moduleName %>.tpls\', [<%= tplModules %>]);',
+            all: 'angular.module(\'<%= build.options.moduleName %>\', [\'<%= build.options.moduleName %>.tpls\', <%= srcModules %>]);',
+            cssInclude: '',
+            cssFileBanner: '/* Include this file in your html if you are using the CSP mode. */\n\n',
+            cssFileDest: '<%= dist %>/<%= build.options.filename %>-<%= pkg.version %>-csp.css',
+            banner: [
+                '/*',
+                ' * <%= pkg.name %>',
+                ' * <%= pkg.homepage %>\n',
+                ' * Version: <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>',
+                ' * License: <%= pkg.license %>',
+                ' */\n'
+            ].join('\n')
+        });
+
         //If arguments define what modules to build, build those. Else, everything
         if (this.args.length) {
             this.args.forEach(findModule);
@@ -26,7 +46,7 @@ module.exports = function (grunt) {
             });
         }
         
-        var modules = grunt.config('build.modules');
+        var modules = grunt.config('modules');
         grunt.config('srcModules', _.pluck(modules, 'moduleName'));
         grunt.config('tplModules', _.pluck(modules, 'tplModules').filter(function (tpls) { return tpls.length > 0; }));
         grunt.config('demoModules', modules.filter(function (module) {
@@ -127,7 +147,7 @@ module.exports = function (grunt) {
         }
         
         module.dependencies.forEach(findModule);
-        grunt.config('build.modules', grunt.config('build.modules').concat(module));
+        grunt.config('modules', grunt.config('modules').concat(module));
     }
     
     function dependenciesForModule(name) {
