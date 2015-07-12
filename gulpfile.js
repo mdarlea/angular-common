@@ -10,13 +10,13 @@ gulp.task('ngdocs', [], function () {
         html5Mode: false
     }
 
-    return gulp.src('src/*.js')
+    return gulp.src('src/**/*.js')
                .pipe(gulpDocs.process(options))
-               .pipe(gulp.dest('./docs'));
+               .pipe(gulp.dest('./dist/docs'));
 });
 
 gulp.task('default', ['ngdocs'], function (cb) {
-    var app = connect().use(serveStatic('./docs'));
+    var app = connect().use(serveStatic('./dist/docs'));
     app.listen(8000);
     cb();
     console.log('Server started on http://localhost:8000');
