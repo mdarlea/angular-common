@@ -40,7 +40,6 @@
     <Compile Include="src\sw-common\pagedDataService.docs.js" />
     <Compile Include="src\sw-common\pagedDataService.js" />
     <Compile Include="src\sw-common\utilities.js" />
-    <Compile Include="src\_module.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Content Include="snippets\angProvider.snippet" />

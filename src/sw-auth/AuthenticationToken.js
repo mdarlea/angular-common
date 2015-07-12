@@ -3,6 +3,16 @@
     
     /**
     * @ngdoc service
+    * @name swAuth
+ 
+    * @description This module contains token based authentication services
+    * - {@link swAuth.$authenticationTokenFactory $authenticationTokenFactory} 
+    * - {@link swAuth.$authService $authService} 
+    */
+    var swAuth = angular.module('swAuth', ['swCommon']);
+
+    /**
+    * @ngdoc service
     * @name swAuth.AuthenticationToken
     * @description Class responsible for the state and behavior of an authentication token
     * @constructor
