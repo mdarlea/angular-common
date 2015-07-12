@@ -45,7 +45,7 @@ module.exports = function (grunt) {
                 ' * License: <%= pkg.license %>',
                 ' */\n'
             ].join('\n')
-        });
+        },true);
 
         //If arguments define what modules to build, build those. Else, everything
         if (this.args.length) {
@@ -98,9 +98,15 @@ module.exports = function (grunt) {
         grunt.task.run(['concat', 'uglify', 'makeModuleMappingFile']);
     });
     
-    function configTask(name, value) {
-        if (!grunt.config.get(name, value)) {
-            grunt.config.set(name, value);    
+    function configTask(name, value, merge) {
+        if (!grunt.config.data[name]) {
+            grunt.config.set(name, value);
+        } else {
+            if (merge) {
+                var newValue = {};
+                newValue[name] = value;
+                grunt.config.merge(newValue);
+            }
         }
     }
 
