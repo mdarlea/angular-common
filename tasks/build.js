@@ -99,7 +99,7 @@ module.exports = function (grunt) {
     });
     
     function configTask(name, value, merge) {
-        if (!grunt.config.data[name]) {
+        if (!grunt.config.data || !grunt.config.data[name]) {
             grunt.config.set(name, value);
         } else {
             if (merge) {
