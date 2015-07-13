@@ -129,7 +129,7 @@ module.exports = function (grunt) {
         var prefix = _options.prefix;
         var path = '';
         if (prefix) {
-            path = (name.substring(0, prefix.length + 1).toLowerCase() === prefix + '-')
+            path = (name.substring(0, prefix.length + 1).toLowerCase() === prefix.toLowerCase() + '-')
                 ? name
                 : name.substring(0, prefix.length).toLowerCase() + "-" + lcwords(name.substring(prefix.length))
         } else {
