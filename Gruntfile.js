@@ -34,8 +34,7 @@
         clean: ['dist']
     });
 
-    grunt.loadTasks('tasks');
-    
+    grunt.loadNpmTasks('grunt-angular-build');
     grunt.loadNpmTasks('grunt-debug-task');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
