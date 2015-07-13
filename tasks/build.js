@@ -30,22 +30,6 @@ module.exports = function (grunt) {
         configTask("modules", []);
         configTask("pkg", grunt.file.readJSON('package.json'));
         configTask("dist", 'dist');
-        configTask("meta", {
-            modules: 'angular.module(\'<%= build.options.moduleName %>\', [<%= srcModules %>]);',
-            tplmodules: 'angular.module(\'<%= build.options.moduleName %>.tpls\', [<%= tplModules %>]);',
-            all: 'angular.module(\'<%= build.options.moduleName %>\', [\'<%= build.options.moduleName %>.tpls\', <%= srcModules %>]);',
-            cssInclude: '',
-            cssFileBanner: '/* Include this file in your html if you are using the CSP mode. */\n\n',
-            cssFileDest: '<%= dist %>/<%= build.options.filename %>-<%= pkg.version %>-csp.css',
-            banner: [
-                '/*',
-                ' * <%= pkg.name %>',
-                ' * <%= pkg.homepage %>\n',
-                ' * Version: <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>',
-                ' * License: <%= pkg.license %>',
-                ' */\n'
-            ].join('\n')
-        },true);
 
         //If arguments define what modules to build, build those. Else, everything
         if (this.args.length) {
@@ -69,6 +53,25 @@ module.exports = function (grunt) {
             return 0;
         }));
         
+        configTask("meta", {
+            modules: 'angular.module(\'<%= build.options.moduleName %>\', [<%= srcModules %>]);',
+            tplmodules: 'angular.module(\'<%= build.options.moduleName %>.tpls\', [<%= tplModules %>]);',
+            all: 'angular.module(\'<%= build.options.moduleName %>\', [\'<%= build.options.moduleName %>.tpls\', <%= srcModules %>]);',
+            cssInclude: '',
+            cssFileBanner: '/* Include this file in your html if you are using the CSP mode. */\n\n',
+            cssFileDest: '<%= dist %>/<%= build.options.filename %>-<%= pkg.version %>-csp.css',
+            banner: [
+                '/*',
+                ' * <%= pkg.name %>',
+                ' * <%= pkg.description %>\n',
+                ' * Created By: <%= pkg.author %>',
+                ' * <%= pkg.homepage %>\n',
+                ' * Version: <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>',
+                ' * License: <%= pkg.license %>',
+                ' */\n'
+            ].join('\n')
+        }, true);
+        
         var cssStrings = _.flatten(_.compact(_.pluck(modules, 'css')));
         var cssJsStrings = _.flatten(_.compact(_.pluck(modules, 'cssJs')));
         if (cssStrings.length) {
@@ -79,6 +82,38 @@ module.exports = function (grunt) {
             
             grunt.log.writeln('File ' + grunt.config('meta.cssFileDest') + ' created');
         }
+        
+        configTask("concat", {
+            dist: {
+                options: {
+                    banner: '<%= meta.banner %><%= meta.modules %>\n',
+                    footer: '<%= meta.cssInclude %>'
+                },
+                src: [], //src filled in by build task
+                dest: '<%= dist %>/<%= build.options.filename %>-<%= pkg.version %>.js'
+            },
+            dist_tpls: {
+                options: {
+                    banner: '<%= meta.banner %><%= meta.all %>\n<%= meta.tplmodules %>\n',
+                    footer: '<%= meta.cssInclude %>'
+                },
+                src: [], //src filled in by build task
+                dest: '<%= dist %>/<%= build.options.filename %>-tpls-<%= pkg.version %>.js'
+            }
+        }, true);
+        configTask("uglify", {
+            options: {
+                banner: '<%= meta.banner %>'
+            },
+            dist: {
+                src: ['<%= concat.dist.dest %>'],
+                dest: '<%= dist %>/<%= build.options.filename %>-<%= pkg.version %>.min.js'
+            },
+            dist_tpls: {
+                src: ['<%= concat.dist_tpls.dest %>'],
+                dest: '<%= dist %>/<%= build.options.filename %>-tpls-<%= pkg.version %>.min.js'
+            }
+        }, true);
         
         var moduleFileMapping = _.clone(modules, true);
         moduleFileMapping.forEach(function (module) {
@@ -100,12 +135,16 @@ module.exports = function (grunt) {
     });
     
     function configTask(name, value, merge) {
-        if (!grunt.config.data || !grunt.config.data[name]) {
+        var data = grunt.config.getRaw(name);
+
+        if (!data) {
             grunt.config.set(name, value);
         } else {
             if (merge) {
+                grunt.config.set(name, value);
+
                 var newValue = {};
-                newValue[name] = value;
+                newValue[name] = data;
                 grunt.config.merge(newValue);
             }
         }
