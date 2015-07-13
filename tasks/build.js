@@ -1,6 +1,15 @@
-﻿'use strict';
+﻿/*
+ * grunt-angular-build
+ * https://github.com/mdarlea/grunt-angular-build
+ *
+ * Copyright (c) 2015 Michelle Darlea
+ * Licensed under the MIT license.
+ */
+
+'use strict';
 
 var markdown = require('node-markdown').Markdown;
+var fs = require('fs');
 
 module.exports = function (grunt) {
     grunt.registerTask('makeModuleMappingFile', function () {
@@ -12,13 +21,13 @@ module.exports = function (grunt) {
         grunt.file.write(moduleMappingJs, jsContent);
         grunt.log.writeln('File ' + moduleMappingJs.cyan + ' created.');
     });
-
+    
     var _options = {};
     var _foundModules = {};
-
+    
     grunt.registerTask('build', 'Create build files', function () {
         var _ = grunt.util._;
-
+        
         // Merge task-specific options with these defaults
         _options = this.options({
             filename: '',
@@ -26,11 +35,11 @@ module.exports = function (grunt) {
             modulePrefix: 'sw',
             moduleName: ''
         });
-
+        
         configTask("modules", []);
         configTask("pkg", grunt.file.readJSON('package.json'));
         configTask("dist", 'dist');
-
+        
         //If arguments define what modules to build, build those. Else, everything
         if (this.args.length) {
             this.args.forEach(findModule);
@@ -136,26 +145,26 @@ module.exports = function (grunt) {
     
     function configTask(name, value, merge) {
         var data = grunt.config.getRaw(name);
-
+        
         if (!data) {
             grunt.config.set(name, value);
         } else {
             if (merge) {
                 grunt.config.set(name, value);
-
+                
                 var newValue = {};
                 newValue[name] = data;
                 grunt.config.merge(newValue);
             }
         }
     }
-
+    
     function findModule(name) {
         var modName = toAttribute(name);
         
         if (_foundModules[modName]) { return; }
         _foundModules[modName] = true;
-
+        
         function breakup(text, separator) {
             return text.replace(/[A-Z]/g, function (match) {
                 return separator + match;
@@ -164,18 +173,22 @@ module.exports = function (grunt) {
         function enquote(str) {
             return '\'' + str + '\'';
         }
-
+        
         var prefix = _options.prefix;
         var path = '';
         if (prefix) {
-            path = (name.substring(0, prefix.length + 1).toLowerCase() === prefix.toLowerCase() + '-')
-                ? name
-                : name.substring(0, prefix.length).toLowerCase() + "-" + lcwords(name.substring(prefix.length))
+            if (name.substring(0, prefix.length + 1).toLowerCase() === prefix.toLowerCase() + '-') {
+                path = name;
+            } else {
+                path = name.substring(0, prefix.length).toLowerCase() + "-" + lcwords(name.substring(prefix.length));
+            }
         } else {
             var modulePrefix = _options.modulePrefix;
-            path = (name.substring(0, modulePrefix.length).toLowerCase() === modulePrefix.toLowerCase())
-                ? name.substring(modulePrefix.length)
-                : name;
+            if (name.substring(0, modulePrefix.length).toLowerCase() === modulePrefix.toLowerCase()) {
+                path = name.substring(modulePrefix.length);
+            } else {
+                path = name;
+            }
         }
         
         var deps = dependenciesForModule(path);
@@ -238,9 +251,9 @@ module.exports = function (grunt) {
                 var depArrayStart = moduleCode.indexOf('[');
                 var depArrayEnd = moduleCode.indexOf(']', depArrayStart);
                 var dependencies = moduleCode.substring(depArrayStart + 1, depArrayEnd);
-
+                
                 var modulePrefix = _options.modulePrefix;
-
+                
                 dependencies.split(',').forEach(function (dep) {
                     var depName = dep.trim().replace(/['"]/g, '');
                     if (depName.substring(0, modulePrefix.length).toLowerCase() === modulePrefix.toLowerCase()) {
