@@ -14,7 +14,12 @@ var fs = require('fs');
 module.exports = function (grunt) {
     grunt.registerTask('makeModuleMappingFile', function () {
         var _ = grunt.util._;
-        var moduleMappingJs = 'dist/assets/module-mapping.json';
+
+        var dist = grunt.config.get("dist");
+        if (!dist) {
+            dist = "dist";
+        }
+        var moduleMappingJs = dist + '/assets/module-mapping.json';
         var moduleMappings = grunt.config('moduleFileMapping');
         var moduleMappingsMap = _.object(_.pluck(moduleMappings, 'name'), moduleMappings);
         var jsContent = JSON.stringify(moduleMappingsMap);
