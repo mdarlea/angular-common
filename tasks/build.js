@@ -52,7 +52,8 @@ module.exports = function (grunt) {
             this.args.forEach(findModule);
         } else {
             grunt.file.expand({ filter: 'isDirectory', cwd: '.' }, 'src/*')
-            .forEach(function(dir) {
+            .forEach(function (dir) {
+                grunt.log.writeln('Package files in folder: ' + dir);
                 findModule(dir.split('/')[1]);
             });
         }
@@ -126,10 +127,17 @@ module.exports = function (grunt) {
         }
 
         var prefix = _options.prefix;
-
-        var path = (name.substring(0, prefix.length + 1).toLowerCase() === prefix + '-') 
-                        ? name 
-                        : name.substring(0, prefix.length).toLowerCase() + "-" + lcwords(name.substring(prefix.length))
+        var path = '';
+        if (prefix) {
+            path = (name.substring(0, prefix.length + 1).toLowerCase() === prefix + '-')
+                ? name
+                : name.substring(0, prefix.length).toLowerCase() + "-" + lcwords(name.substring(prefix.length))
+        } else {
+            var modulePrefix = _options.modulePrefix;
+            path = (name.substring(0, modulePrefix.length).toLowerCase() === modulePrefix.toLowerCase())
+                ? name.substring(modulePrefix.length)
+                : name;
+        }
         
         var deps = dependenciesForModule(path);
         
@@ -196,7 +204,7 @@ module.exports = function (grunt) {
 
                 dependencies.split(',').forEach(function (dep) {
                     var depName = dep.trim().replace(/['"]/g, '');
-                    if (depName.substring(0, modulePrefix.length).toLowerCase() === modulePrefix) {
+                    if (depName.substring(0, modulePrefix.length).toLowerCase() === modulePrefix.toLowerCase()) {
                         if (deps.indexOf(depName) < 0) {
                             deps.push(depName);
                             //Get dependencies for this new dependency

@@ -46,8 +46,8 @@
         },
         ngdocs: {
             options: {
-                dest: 'dist/docs',
-                title: 'sw-common',
+                dest: '<%= dist %>/docs',
+                title: '<%= pkg.name %>',
                 html5Mode: false,
                 sourceLink: 'https://github.com/mdarlea/angular-common/blob/master/{{file}}'
             },
