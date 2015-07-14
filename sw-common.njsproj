@@ -12,7 +12,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>85016b54-3b90-4a86-977c-4e501a56e3bb</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>server.js</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -32,7 +33,6 @@
   <ItemGroup>
     <Compile Include="gruntfile.js" />
     <Compile Include="gulpfile.js" />
-    <Compile Include="server.js" />
     <Compile Include="src\sw-auth\authenticationTokenFactory.js" />
     <Compile Include="src\sw-auth\authService.js" />
     <Compile Include="src\sw-auth\AuthenticationToken.js" />

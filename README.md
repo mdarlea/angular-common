@@ -1,4 +1,4 @@
-﻿### [AngularJS](http://angularjs.org/) common utility functions and token-based authentication service
+﻿### [AngularJS](http://angularjs.org/) common utility functions and token-based authentication service [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/tubdbt4557syv5vt/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/angular-common/branch/master)
 
 <h2>swCommon</h2>
 <div class="description">
