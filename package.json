@@ -1,4 +1,4 @@
-{""
+{
   "name": "sw-common",
   "version": "1.0.0",
   "description": "AngularJS common utility functions and token-based authentication service",
