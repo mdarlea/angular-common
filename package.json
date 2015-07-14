@@ -4,7 +4,7 @@
   "description": "AngularJS common utility functions and token-based authentication service",
   "author": "Michelle Darlea <mdarlea@gmail.com> (https://github.com/mdarlea)",
   "scripts": {
-    "test": "grunt"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",

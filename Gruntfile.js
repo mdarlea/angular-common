@@ -1,5 +1,6 @@
 ﻿module.exports = function (grunt) {
     grunt.initConfig({
+        dist: 'dist',
         debug: {
             options: {
                 open: false // do not open node-inspector in Chrome automatically 
@@ -31,7 +32,7 @@
             },
             server: {}
         },
-        clean: ['dist']
+        clean: ['<%= dist %>']
     });
 
     grunt.loadNpmTasks('grunt-angular-build');
@@ -42,6 +43,6 @@
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-clean');
     
-    
-    grunt.registerTask('default', ['clean', 'build', 'ngdocs', 'connect']);
+    grunt.registerTask('test', ['clean', 'build', 'ngdocs']);
+    grunt.registerTask('default', ['test', 'connect']);
 };
