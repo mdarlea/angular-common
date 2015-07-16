@@ -11,19 +11,19 @@ PM> Install-Package sw-common
 
 	<h4 id="description_-providers"> Providers </h4>
 	<dl>
-		<dt><a href="http://swaksoft.com/docs/#/api/swCommon.swAppSettingsProvider">swAppSettings</a> </dt>
+		<dt><a href="http://swaksoft.com/docs/common/docs/#/api/swCommon.swAppSettingsProvider">swAppSettings</a> </dt>
 		<dd>Provides application configuration for different environments</dd>
 	</dl>
 
 	<h4 id="description_-services"> Objects </h4> 
 	<dl>
-		<dt><a href="http://swaksoft.com/docs/#/api/swCommon.$utilities">$utilities</a></dt>
+		<dt><a href="http://swaksoft.com/docs/common/docs/#/api/swCommon.$utilities">$utilities</a></dt>
 		<dd>Utility functions (helpers)</dd>
 	</dl>
 
 	<h4 id="description_-services"> Services </h4> 
 	<dl>
-		<dt><a href="http://swaksoft.com/docs/#/api/swCommon.PagedDataService">PagedDataService</a></dt>
+		<dt><a href="http://swaksoft.com/docs/common/docs/#/api/swCommon.PagedDataService">PagedDataService</a></dt>
 		<dd>Service that queries paged data. It can be used with ngGrid, any grind that supports paging or with an infinit-scrolling list</dd>
 	</dl>
 </div>
@@ -32,7 +32,7 @@ PM> Install-Package sw-common
 <div class="description">
 	<p>This module contains token based authentication services</p>
 	<dl>
-		<dt><a href="http://swaksoft.com/docs/#/api/swAuth.$authenticationTokenFactory">$authenticationTokenFactory</a> </dt>
+		<dt><a href="http://swaksoft.com/docs/common/docs/#/api/swAuth.$authenticationTokenFactory">$authenticationTokenFactory</a> </dt>
 		<dd>
 			Service that performs the following functions:
 			<ul>
@@ -41,7 +41,7 @@ PM> Install-Package sw-common
 				<li>removes the current authetnication token from the local storage</li>
 			</ul>
 		</dd>
-		<dt><a href="http://swaksoft.com/docs/#/api/swAuth.$authService">$authService</a> </dt>
+		<dt><a href="http://swaksoft.com/docs/common/docs/#/api/swAuth.$authService">$authService</a> </dt>
 		<dd>
 			Authentication service
 		</dd>
