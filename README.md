@@ -1,5 +1,10 @@
 ﻿### [AngularJS](http://angularjs.org/) common utility functions and token-based authentication service [![Build Status: Windows](https://ci.appveyor.com/api/projects/status/tubdbt4557syv5vt/branch/master?svg=true)](https://ci.appveyor.com/project/gruntjs/angular-common/branch/master)
 
+### [AngularJS Common](https://www.nuget.org/packages/sw-common/) ![NuGet version](https://badge.fury.io/nu/sw-common.png)
+```
+PM> Install-Package sw-common
+```
+
 <h2>swCommon</h2>
 <div class="description">
 	<p>This module contains AngularJS common components</p>

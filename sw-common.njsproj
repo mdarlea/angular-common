@@ -32,7 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="gruntfile.js" />
-    <Compile Include="gulpfile.js" />
     <Compile Include="src\sw-auth\authenticationTokenFactory.js" />
     <Compile Include="src\sw-auth\authService.js" />
     <Compile Include="src\sw-auth\AuthenticationToken.js" />
