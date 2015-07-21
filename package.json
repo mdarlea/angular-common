@@ -1,6 +1,6 @@
 {
   "name": "sw-common",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AngularJS common utility functions and token-based authentication service",
   "author": "Michelle Darlea <mdarlea@gmail.com> (https://github.com/mdarlea)",
   "scripts": {

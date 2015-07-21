@@ -4,6 +4,7 @@
     /**
     * @ngdoc service
     * @name swAuth.$authenticationTokenFactory
+    * @requires swCommon.swAppSettings
     * @requires localStorageService
     * @requires swAuth.AuthenticationToken     
     * @description Service that performs the following functions:
@@ -12,9 +13,9 @@
     *   - removes the current authetnication token from the local storage   
     */              
     angular.module('swAuth').factory('$authenticationTokenFactory',
-        ['localStorageService', 'AuthenticationToken', function (localStorageService, AuthenticationToken) {
+        ['swAppSettings', 'localStorageService', 'AuthenticationToken', function (swAppSettings, localStorageService, AuthenticationToken) {
             
-            var key = "authorizationData";
+            var key = "authorizationData_" + swAppSettings.clientId;
             
             var factory = {
                 /**
