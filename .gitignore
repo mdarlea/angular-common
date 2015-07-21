@@ -9,6 +9,7 @@ lib-cov
 *.swp
 *.swo
 *.tmp
+*.nupkg
 .DS_Store
 
 
